@@ -1,6 +1,7 @@
 const express = require('express');
 const UserRoutes = require('./src/api/users/users.routes');
 const RopasRoutes = require("./src/api/ropa/ropa.routes");
+const IndexRoutes = require("./src/api/index/index.routes")
 const cors = require("cors");
 require("dotenv").config();
 const db = require('./src/utils/database/db');
@@ -27,7 +28,7 @@ server.use(cors({
 server.use(express.json({limit: "5mb"}));
 
 server.use(express.urlencoded({ extended: false }));
-
+server.use('/',IndexRoutes);
 server.use('/ropas', RopasRoutes);
 server.use('/users', UserRoutes);
 
