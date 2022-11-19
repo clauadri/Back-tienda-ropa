@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-const ropaSchema = new mongoose.Schema(
+const ropaMujerSchema = new mongoose.Schema(
   {
     tipo: { type: String, trim: true, required: true },
     precio: { type: Number, trim: true, required: true },
     imagen: { type: String, trim: true, required: true },
     talla: { type: String, trim: true,enum:['XS','S','M','L','XL','XXL'] }
   },
-  { timestamps: true, collection: "ropas" }
+  { timestamps: true, collection: "ropasmujer" }
 );
 
-const Ropa = mongoose.model("ropas", ropaSchema);
-module.exports = Ropa;
+const Ropamujer = mongoose.model("ropasmujer", ropaMujerSchema);
+module.exports = Ropamujer;

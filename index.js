@@ -1,6 +1,7 @@
 const express = require('express');
 const UserRoutes = require('./src/api/users/users.routes');
-const RopasRoutes = require("./src/api/ropa/ropa.routes");
+const RopasHombreRoutes = require("./src/api/ropa/ropaHombre.routes");
+const RopasMujerRoutes = require("./src/api/ropa/ropaMujer.routes");
 const IndexRoutes = require("./src/api/index/index.routes")
 const cors = require("cors");
 require("dotenv").config();
@@ -29,7 +30,8 @@ server.use(express.json({limit: "5mb"}));
 
 server.use(express.urlencoded({ extended: false }));
 server.use('/',IndexRoutes);
-server.use('/ropas', RopasRoutes);
+server.use('/ropahombre', RopasHombreRoutes);
+server.use('/ropamujer', RopasMujerRoutes);
 server.use('/users', UserRoutes);
 
 server.listen(PORT, () => {

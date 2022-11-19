@@ -1,12 +1,12 @@
 const express = require("express");
-const Ropa = require("./ropa.model");
 const upload = require("../../middlewares/file");
 const { isAuth,isAdmin } = require("../../middlewares/auth");
+const Ropamujer = require("./ropaMujer.model");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const allRopas = await Ropa.find();
+    const allRopas = await Ropamujer.find();
     return res.status(200).json(allRopas);
   } catch (error) {
     return res.status(500).json("Error en el servidor");
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", [isAuth], async (req, res) => {
   try {
     const id = req.params.id;
-    const ropaToFind = await Ropa.findById(id);
+    const ropaToFind = await Ropamujer.findById(id);
     return res.status(200).json(ropaToFind);
   } catch (error) {
     return res.status(500).json(error);
@@ -31,7 +31,7 @@ router.post("/create", upload.single("imagen"), async (req, res) => {
       ropa.imagen = req.file.path;
     }
      console.log(req.body);
-    const newRopa = new Ropa(ropa);
+    const newRopa = new Ropamujer(ropa);
     console.log(newRopa);
     const created = await newRopa.save();
     console.log(created)
@@ -44,7 +44,7 @@ router.post("/create", upload.single("imagen"), async (req, res) => {
 router.delete("/delete/:id", [isAuth], async (req, res) => {
   try {
     const id = req.params.id;
-    await Ropa.findByIdAndDelete(id);
+    await Ropamujer.findByIdAndDelete(id);
     return res.status(200).json("Se ha conseguido borrar la ropa");
   } catch (error) {
     return res.status(500).json("Error al borrar la ropa");
@@ -55,9 +55,9 @@ router.put("/edit/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const ropa = req.body;
-    const ropaModify = new Ropa(ropa);
+    const ropaModify = new Ropamujer(ropa);
     ropaModify._id = id;
-    const ropaUpdated = await Ropa.findByIdAndUpdate(
+    const ropaUpdated = await Ropamujer.findByIdAndUpdate(
       id,
       ropaModify
     );
