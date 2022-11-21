@@ -41,7 +41,7 @@ router.post("/create", upload.single("imagen"), async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", [isAuth], async (req, res) => {
+router.delete("/delete/:id",  async (req, res) => {
   try {
     const id = req.params.id;
     await Ropamujer.findByIdAndDelete(id);
