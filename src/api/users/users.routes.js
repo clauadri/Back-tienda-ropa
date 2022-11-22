@@ -33,14 +33,14 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res) => {
   try {
     const userDB = await User.findOne({ email: req.body.email });
-    console.log(userDB);
+    console.log('user',userDB);
     if (!userDB) {
       return res.status(404).json("No existe el usuario");
     }
     if (bcrypt.compareSync(req.body.password, userDB.password)) {
-      
+      console.log('pass',req.body.password);
       const token = generateSign(userDB._id, userDB.email);
-     
+     console.log('token', token);
       return res.status(200).json({ token, userDB });
     } else {
       return res.status(200).json("La contraseña es incorrecta maquina");

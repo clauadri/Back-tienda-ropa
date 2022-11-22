@@ -16,12 +16,12 @@ const userSchema = new Schema(
   }
 );
 
-// userSchema.pre("save", function (next) {
+userSchema.pre("save", function (next) {
 
-//     this.password = bcrypt.hashSync(this.password, 10);
-//     next();
+    this.password = bcrypt.hashSync(this.password, 10);
+    next();
 
-// })
+})
 
 const User = mongoose.model('users', userSchema);
 module.exports = User;
