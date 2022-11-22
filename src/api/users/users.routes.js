@@ -15,16 +15,18 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", async (req, res, next) => {
   try {
-    const user = req.body;
+    // const user = req.body;
     console.log(req.body)
-    const newUser = new User(user);
+    const newUser = new User(req.body);
+    console.log('',newUser);
     const created = await newUser.save();
+    console.log(created);
     return res.status(201).json(created);
   } catch (error) {
-
-    return error;
+    console.log(error);
+    return next(error);
   }
 });
 

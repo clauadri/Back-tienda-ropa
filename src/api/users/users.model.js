@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    userName: {type: String, required:false, unique: true, trim: true},
+    userName: {type: String, required:false, trim: true},
     email: { type: String, required: true, unique: true, trim: true },
     password: { type: String, required: true, trim: true },
     fechaNac: { type: String, required: false, trim: true},
@@ -16,12 +16,12 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.pre("save", function (next) {
+// userSchema.pre("save", function (next) {
 
-    this.password = bcrypt.hashSync(this.password, 10);
-    next();
+//     this.password = bcrypt.hashSync(this.password, 10);
+//     next();
 
-})
+// })
 
 const User = mongoose.model('users', userSchema);
 module.exports = User;
