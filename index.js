@@ -19,12 +19,12 @@ cloudinary.config({
 const server = express();
 const PORT = 3000;
 
-server.use(cors({
-  origin: "*",
-  credentials: true
-}))
+// server.use(cors({
+//   origin: "*",
+//   credentials: true
+// }))
 
-/* server.use(cors()); */
+server.use(cors()); 
 
 server.use(express.json({limit: "5mb"}));
 

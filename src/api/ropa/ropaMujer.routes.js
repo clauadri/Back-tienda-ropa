@@ -53,19 +53,23 @@ router.delete("/delete/:id",  async (req, res) => {
 
 router.put("/edit/:id", async (req, res) => {
   try {
+    console.log(req.body)
     const id = req.params.id;
     const ropa = req.body;
     const ropaModify = new Ropamujer(ropa);
     ropaModify._id = id;
+
     const ropaUpdated = await Ropamujer.findByIdAndUpdate(
       id,
       ropaModify
     );
+    
     return res
       .status(200)
       .json({
         mensaje: "Se ha conseguido editar la ropa",
         ropaModificado: ropaUpdated,
+
       });
   } catch (error) {
     return res.status(500).json("Error al editar la ropa");

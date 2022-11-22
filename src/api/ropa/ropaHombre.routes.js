@@ -55,12 +55,14 @@ router.put("/edit/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const ropa = req.body;
+    console.log(req.body);
     const ropaModify = new Ropahombre(ropa);
     ropaModify._id = id;
     const ropaUpdated = await Ropahombre.findByIdAndUpdate(
       id,
       ropaModify
     );
+    console.log(ropaUpdated)
     return res
       .status(200)
       .json({
